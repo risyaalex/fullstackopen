@@ -1,0 +1,21 @@
+title fullstackopen.com (Ex.0.5: Single page app diagram)
+
+
+note right of browser: Navigate to https://studies.cs.helsinki.fi/exampleapp/spa
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+note left of server: Status Code: 304 Not Modified
+server-->browser: HTML 
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+note left of server: Status Code: 304 Not Modified
+server-->browser: main.css 
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+note left of server: Status Code: 304 Not Modified
+server-->browser: spa.js 
+
+note right of browser: Execution of JS code by the browser and requesting JSON data from the server
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+note left of server: Status Code: 304 Not Modified
+server-->browser: data.json
+note right of browser: renders notes to display

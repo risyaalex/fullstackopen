@@ -1,0 +1,29 @@
+title fullstackopen.com (Ex.0.4: New note diagram)
+
+user->browser: Enters new note text and clicks "Save"
+
+note left of browser: Sending user-entered data
+browser->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note left of server: Status Code: 302 Found
+server-->browser: HTTP
+
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+note left of server: Status Code: 304 Not Modified
+server-->browser: HTML 
+
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+note left of server: Status Code: 304 Not Modified
+server-->browser: main.css
+
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+note left of server: Status Code: 304 Not Modified
+server-->browser: main.js
+
+note right of browser: Execution of JS code by the browser and requesting JSON data from the server
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+note left of server: Status Code: 200 OK
+server-->browser: data.json {content: "Alex", date: "2023-09-01T17:05:33.344Z"}
+note left of browser: Display new note

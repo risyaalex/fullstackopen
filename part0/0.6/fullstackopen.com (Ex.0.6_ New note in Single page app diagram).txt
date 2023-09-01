@@ -1,0 +1,11 @@
+title fullstackopen.com (Ex.0.6: New note in Single page app diagram)
+
+user->browser: Enters new note text and clicks "Save"
+
+note left of browser: Sending user-entered data
+
+browser->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note left of server: Status Code: 201 Created
+server-->browser: json {content: "MY NEW NOTE", date: "2023-09-01T17:44:04.581Z"}
+note right of browser: browser does not reload this page
+note left of browser: renders notes to display
