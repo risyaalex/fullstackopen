@@ -1,0 +1,11 @@
+.success {
+  color: green;
+  background: rgb(182, 251, 220);
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 250px;
+  text-align: center;
+  padding: 10px;
+}
