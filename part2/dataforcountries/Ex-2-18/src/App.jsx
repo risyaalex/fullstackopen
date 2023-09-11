@@ -42,7 +42,7 @@ function App() {
      {countriesToShow.length > 10 ? (
          <Error message={"Too many matches, specify another filter"} />
       ) : countriesToShow.length === 1 ? (
-         <CountryInfo country={countriesToShow} />
+         <CountryInfo country={countriesToShow[0]} />
       ) : countriesToShow.length === 0 ? (
          <Error message={"No matches, specify another filter"} />
       ) : (
