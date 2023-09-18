@@ -7,7 +7,7 @@ const Person = require('./models/person')
 
 app.use(cors())
 
-app.use(express.static('dist'))
+app.use(express.static('build'))
 
 app.use(express.json())
 
@@ -19,15 +19,16 @@ morgan.token('POST', function (request) {
   return JSON.stringify(request.body)
 })
 
-app.get('/api/persons', (request, response) => {
+app.get('/api/persons', (request, response, next) => {
   Person.find({})
     .then((persons) => {
-      response.json(persons)
+      if (persons) {
+        response.json(persons)
+      } else {
+        response.status(404).end()
+      }
     })
-    .catch((error) => {
-      console.error('Error fetching persons:', error)
-      response.status(500).json({ error: 'Internal Server Error' })
-    })
+    .catch((error) => next(error))
 })
 
 app.get('/api/persons/:id', (request, response, next) => {
@@ -58,17 +59,18 @@ app.post('/api/persons', (request, response, next) => {
     .catch((error) => next(error))
 })
 
-app.get('/info', (request, response) => {
+app.get('/info', (request, response, next) => {
   Person.find({})
     .then((persons) => {
-      const infoCount = `<p>Phonebook has info for ${persons.length} people.</p>`
-      const infoDate = `<p> ${new Date()}</p>`
-      response.send(infoCount + infoDate)
+      if (persons) {
+        const infoCount = `<p>Phonebook has info for ${persons.length} people.</p>`
+        const infoDate = `<p> ${new Date()}</p>`
+        response.send(infoCount + infoDate)
+      } else {
+        response.status(500).end()
+      }
     })
-    .catch((error) => {
-      console.error('Error fetching persons:', error)
-      response.status(500).json({ error: 'Internal Server Error' })
-    })
+    .catch((error) => next(error))
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
