@@ -26,10 +26,6 @@ beforeEach(async () => {
   await Blog.insertMany(initialBlogs)
 })
 
-afterAll(async () => {
-  await mongoose.connection.close()
-})
-
 describe('GET /api/blogs', () => {
   test('returns a JSON array of blogs', async () => {
     const response = await api
@@ -55,4 +51,8 @@ describe('GET /api/blogs', () => {
       expect(blog.id).toBeDefined()
     })
   })
+})
+
+afterAll(async () => {
+  await mongoose.connection.close()
 })

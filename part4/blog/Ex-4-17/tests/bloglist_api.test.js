@@ -1,25 +1,30 @@
-const app = require('../app')
-const supertest = require('supertest')
 const mongoose = require('mongoose')
-const Blog = require('../models/blogs')
+const supertest = require('supertest')
 
+const app = require('../app')
 const api = supertest(app)
+
+const Blog = require('../models/blogs')
+const User = require('../models/users')
 
 beforeEach(async () => {
   await Blog.deleteMany({})
 
+  const user = await User.findOne({ username: 'usernameAlex' })
   const initialBlogs = [
     {
-      title: 'Blog 1',
+      title: 'Blog 1 New',
       author: 'Alex',
       url: 'http://1.com/',
       likes: 5,
+      user: user._id,
     },
     {
-      title: 'Blog 2',
+      title: 'Blog 2 New',
       author: 'Alex',
       url: 'http://2.com/',
       likes: 10,
+      user: user._id,
     },
   ]
 

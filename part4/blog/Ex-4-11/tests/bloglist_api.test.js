@@ -26,10 +26,6 @@ beforeEach(async () => {
   await Blog.insertMany(initialBlogs)
 })
 
-afterAll(async () => {
-  await mongoose.connection.close()
-})
-
 describe('GET /api/blogs', () => {
   test('returns a JSON array of blogs', async () => {
     const response = await api
@@ -98,4 +94,8 @@ describe('POST /api/blogs', () => {
 
     expect(response.body.error).toContain('Missing required fields')
   })
+})
+
+afterAll(async () => {
+  await mongoose.connection.close()
 })

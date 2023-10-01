@@ -1,0 +1,18 @@
+POST http://localhost:3001/api/blogs/ HTTP/1.1
+Content-Type: application/json
+
+    {
+        "title": "Note 4",
+        "author": "Alex",
+        "url": "http://...com",
+        "likes": 12
+    }
+###
+POST http://localhost:3001/api/users/ HTTP/1.1
+Content-Type: application/json
+
+    {
+      "username": "v",
+      "name": "Valid User",
+      "password": ""
+    }

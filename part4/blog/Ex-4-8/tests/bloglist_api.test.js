@@ -9,10 +9,6 @@ beforeEach(async () => {
   await Blog.deleteMany({})
 })
 
-afterAll(async () => {
-  await mongoose.connection.close()
-})
-
 describe('GET /api/blogs', () => {
   test('returns a JSON array of blogs', async () => {
     const initialBlogs = [
@@ -43,4 +39,8 @@ describe('GET /api/blogs', () => {
   test('returns 404 if no blogs are found', async () => {
     await api.get('/api/blogs').expect(404)
   })
+})
+
+afterAll(async () => {
+  await mongoose.connection.close()
 })
