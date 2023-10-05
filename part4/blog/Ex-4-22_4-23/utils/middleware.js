@@ -32,6 +32,35 @@ const tokenExtractor = async (request, response, next) => {
   }
 }
 
+const userExtractor = async (request, response, next) => {
+  try {
+    const authHeader = request.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (!token) {
+      if (request.method === 'GET') {
+        return next()
+      }
+      return response.status(401).json({ error: 'Unauthorized' })
+    }
+
+    const decodedToken = jwt.verify(token, process.env.SECRET)
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: 'Invalid token' })
+    }
+
+    const user = await User.findById(decodedToken.id)
+    if (!user) {
+      return response.status(401).json({ error: 'User not found' })
+    }
+
+    request.user = user
+    next()
+  } catch (error) {
+    return response.status(401).json({ error: 'Invalid token' })
+  }
+}
+
 const requestLogger = (request, response, next) => {
   logger.info('Method:', request.method)
   logger.info('Path:  ', request.path)
@@ -63,4 +92,5 @@ module.exports = {
   unknownEndpoint,
   errorHandler,
   tokenExtractor,
+  userExtractor,
 }

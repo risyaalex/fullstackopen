@@ -1,14 +1,15 @@
 POST http://localhost:3001/api/blogs/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgiLCJpZCI6IjY1MWIwNmYwYTY0N2Y2MDc0NjM0NWU0ZCIsImlhdCI6MTY5NjUxNTEzMSwiZXhwIjoxNjk2NTE4NzMxfQ.Ql205qylspTDheZzxjEBe6oLO2juZyjYHyu-U12LU4w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgiLCJpZCI6IjY1MWIwNmYwYTY0N2Y2MDc0NjM0NWU0ZCIsImlhdCI6MTY5NjUzMjk0NywiZXhwIjoxNjk2NTM2NTQ3fQ.o09ENcd98Qm9xkQzkBzCnyiDEjNx8e0UzgGyOqhcxdI
 
    {    
-        "title": "Note 3267",
+        "title": "Note 12357",
         "author": "Alex",
         "url": "http://...com",
         "likes": 2,
         "user": "651b06f0a647f60746345e4d"
     }
+
 ###
 POST http://localhost:3001/api/users/ HTTP/1.1
 Content-Type: application/json
