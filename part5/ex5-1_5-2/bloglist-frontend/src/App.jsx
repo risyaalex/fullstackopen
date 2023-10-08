@@ -17,7 +17,7 @@ const App = () => {
     if (savedUser) {
       const user = JSON.parse(savedUser);
       setUser(user);
-      blogService.setToken(user.token); // Устанавливаем токен для доступа к блогам
+      blogService.setToken(user.token);
     }
 
     blogService.getAll().then((blogs) => setBlogs(blogs));
