@@ -48,7 +48,12 @@ const Blog = ({ blog, setMessage, currentUser, setBlogs, blogs }) => {
     try {
       console.log('Updated blog data:', updatedBlog);
       const updated = await blogService.update(localBlog.id, updatedBlog);  
-      setLocalBlog(updated);  
+
+      setLocalBlog({ ...updated, user: localBlog.user });  
+
+      const newState = checkIsCurrentUserTheAuthor();
+      setIsCurrentUserTheAuthor(newState);
+      
     } catch (error) {
       console.error('Error updating likes:', error);
       setMessage({  
@@ -59,7 +64,7 @@ const Blog = ({ blog, setMessage, currentUser, setBlogs, blogs }) => {
         setMessage(null);
       }, 5000);
     }
-  };
+};
 
   const handleDelete = async () => {
   if (window.confirm(`Are you sure you want to delete the blog "${localBlog.title}"?`)) {
